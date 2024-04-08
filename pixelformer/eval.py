@@ -62,12 +62,13 @@ elif args.dataset == 'kittipred':
 def eval(model, dataloader_eval, post_process=False):
     eval_measures = torch.zeros(10).cuda()
     for _, eval_sample_batched in enumerate(tqdm(dataloader_eval.data)):
+        print('evaluating')
         with torch.no_grad():
             image = torch.autograd.Variable(eval_sample_batched['image'].cuda())
             gt_depth = eval_sample_batched['depth']
             has_valid_depth = eval_sample_batched['has_valid_depth']
             if not has_valid_depth:
-                # print('Invalid depth. continue.')
+                print('Invalid depth. continue.')
                 continue
 
             pred_depth = model(image)
