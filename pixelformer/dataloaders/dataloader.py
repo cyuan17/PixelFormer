@@ -165,9 +165,9 @@ class DataLoadPreprocess(Dataset):
                 gt_path = self.args.gt_path_eval
                 # depth_path = os.path.join(gt_path, "./" + sample_path.split()[1])
                 depth_path = os.path.join(gt_path, sample_path.split()[1])
-                print(depth_path)
                 if self.args.dataset == 'kitti':
                     depth_path = os.path.join(gt_path, sample_path.split()[0].split('/')[0], sample_path.split()[1])
+                    print(depth_path)
                 has_valid_depth = False
                 try:
                     depth_gt = Image.open(depth_path)
